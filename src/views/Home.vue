@@ -94,61 +94,66 @@ const convertToData = (date) => {
 <template>
   <main>
     <div class="flex items-center justify-between mb-8">
-      <h1 class="text-3xl font-bold">Notes with Auth👌</h1>
-      <button @click="logout" class="text-red-500 text-sm font-bold">
+      <h1 class="text-center text-3xl font-bold mb-4">
+        <span class="text-green-500">U-</span>Notes📃
+      </h1>
+      <button
+        @click="logout"
+        class="bg-white/20 rounded-lg p-2 text-red-500 text-xl font-bold"
+      >
         Logout
       </button>
     </div>
 
     <form @submit.prevent="handleCreateNote" class="mb-8">
-      <label class="block mb-4">
-        <label class="block mb-4 mt-4"
-          ><span class="block text-sm uppercase mb-2">Title</span></label
-        >
+      <div class="shadow-xl p-6 bg-gray-500/40 rounded-lg">
+        <label class="block mb-4">
+          <label class="block mb-4 mt-4"
+            ><span class="block text-base uppercase mb-2">Title</span></label
+          >
+          <input
+            type="text"
+            v-model="newNote.title"
+            placeholder="Title"
+            class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
+          />
+          <label class="block mb-4 mt-4"
+            ><span class="block text-base uppercase mb-2">Content</span></label
+          >
+          <textarea
+            type="text"
+            v-model="newNote.content"
+            placeholder="Write your note here..."
+            class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
+          ></textarea>
+        </label>
         <input
-          type="text"
-          v-model="newNote.title"
-          placeholder="Title"
-          class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
+          type="submit"
+          value="create note"
+          class="text-green-500 hover:underline cursor-pointer mt-4 bg-white/20 rounded-lg p-2"
         />
-        <label class="block mb-4 mt-4"
-          ><span class="block text-sm uppercase mb-2">Content</span></label
-        >
-        <textarea
-          type="text"
-          v-model="newNote.content"
-          placeholder="Write your note here..."
-          class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
-        ></textarea>
-      </label>
-      <input
-        type="submit"
-        value="create note"
-        class="text-green-500 hover:underline cursor-pointer mt-4"
-      />
+      </div>
     </form>
     <div v-if="!loadingNotes">
       <div
         v-for="note in noteResults.notes"
         :key="note.id"
-        class="relative bg-white text-slate-700 rounded-lg p-6 mb-6"
+        class="relative shadow-xl bg-gray-500/40 text-white rounded-lg p-6 mb-6"
       >
         <button
-          class="absolute right-6 top-6 text-red-500 font-bold"
+          class="absolute right-6 top-6 bg-white/20 rounded-lg p-2 text-red-500 text-base font-bold"
           @click="() => deleteNote({ id: note.id })"
         >
           Delete
         </button>
 
         <h3 class="font-bold text-2xl mb-3">{{ note.title }}</h3>
-        <p
-          class="text-lg mb-3 text-gray-500"
-          v-html="convertToHTML(note.content)"
-        ></p>
-        <div class="text-sm text-gray-500 italic">
+        <p class="text-lg mb-3" v-html="convertToHTML(note.content)"></p>
+        <div class="text-sm text-green-500 italic">
           {{ convertToData(note.created) }}
         </div>
       </div>
     </div>
   </main>
 </template>
+<style></style>

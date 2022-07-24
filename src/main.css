@@ -5,7 +5,7 @@
 @layer components {
   body {
     font-family: "sugoii", sans-serif;
-    @apply bg-slate-800 text-white;
+    @apply bg-gradient-to-r from-indigo-700 to-indigo-900 text-white;
   }
   main {
     @apply p-6;
