@@ -10,6 +10,7 @@ const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 const doMatch = ref();
+const emailSent = ref();
 
 const { signInEmailPassword } = useSignInEmailPassword();
 const { signUpEmailPassword } = useSignUpEmailPassword();
@@ -22,6 +23,10 @@ const match = () => {
     doMatch.value = true;
     return true;
   }
+};
+
+const emailSend = () => {
+  emailSent.value = true;
 };
 
 const registerOrLogin = async () => {
@@ -94,9 +99,16 @@ const registerOrLogin = async () => {
         >
         <input
           type="submit"
+          @click="emailSend"
           value="Login or Register"
           class="text-green-800 hover:underline cursor-pointer mt-4"
         />
+        <label class="block mb-4 mt-4" v-if="emailSent && isRegister"
+          ><span class="block text-sm uppercase mb-2 text-indigo-500"
+            >Please confirm your email by clicking the link sent to your
+            inbox!🫡</span
+          ></label
+        >
       </div>
     </form>
   </main>
@@ -111,7 +123,7 @@ const registerOrLogin = async () => {
     100px 100px 80px rgba(0, 0, 0, 0.07);
   width: 80%;
   margin: 0 auto;
-  background-color: rgb(64, 246, 73);
+  background-color: rgb(66, 235, 74);
   padding: 20px;
 }
 .logo {
