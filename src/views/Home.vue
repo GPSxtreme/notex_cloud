@@ -93,13 +93,13 @@ const convertToData = (date) => {
 
 <template>
   <main>
-    <div class="flex items-center justify-between mb-8">
-      <h1 class="text-center text-3xl font-bold mb-4">
+    <div class="flex items-center justify-between mb-7">
+      <h1 class="text-center text-3xl font-bold mb-4 logo">
         <span class="text-green-500">U-</span>Notes📃
       </h1>
       <button
         @click="logout"
-        class="bg-white/20 rounded-lg p-2 text-red-500 text-xl font-bold"
+        class="bg-white/20 rounded-lg p-2 text-red-500 text-xl font-bold logout-btn"
       >
         Logout
       </button>
@@ -130,7 +130,7 @@ const convertToData = (date) => {
         <input
           type="submit"
           value="create note"
-          class="text-green-500 hover:underline cursor-pointer mt-4 bg-white/20 rounded-lg p-2"
+          class="text-green-500 hover:underline cursor-pointer mt-4 bg-white/20 rounded-lg p-2 create-note-btn"
         />
       </div>
     </form>
@@ -141,7 +141,7 @@ const convertToData = (date) => {
         class="relative shadow-xl bg-gray-500/40 text-white rounded-lg p-6 mb-6"
       >
         <button
-          class="absolute right-6 top-6 bg-white/20 rounded-lg p-2 text-red-500 text-base font-bold"
+          class="absolute right-6 top-6 bg-white/20 rounded-lg p-2 text-red-500 text-base font-bold delete-btn"
           @click="() => deleteNote({ id: note.id })"
         >
           Delete
@@ -156,4 +156,41 @@ const convertToData = (date) => {
     </div>
   </main>
 </template>
-<style></style>
+<style>
+.logo {
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.193);
+  padding: 7px 10px;
+  border: 2px dashed rgb(35, 37, 85);
+  box-shadow: 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.041),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.059),
+    100px 100px 80px rgba(0, 0, 0, 0.12);
+}
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.33);
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.052),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.068),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.081),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.099),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.128),
+    100px 100px 80px rgba(0, 0, 0, 0.2);
+}
+.delete-btn:hover {
+  background: rgba(255, 255, 255, 0.33);
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.052),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.068),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.081),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.099),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.128),
+    100px 100px 80px rgba(0, 0, 0, 0.2);
+}
+.create-note-btn:hover {
+  background: rgba(255, 255, 255, 0.33);
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.052),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.068),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.081),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.099),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.128),
+    100px 100px 80px rgba(0, 0, 0, 0.2);
+}
+</style>
