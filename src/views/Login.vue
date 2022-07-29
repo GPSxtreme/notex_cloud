@@ -9,16 +9,19 @@ const isRegister = ref(false);
 const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
-const passwordsDontMatch = ref(false);
+const doMatch = ref();
 
 const { signInEmailPassword } = useSignInEmailPassword();
 const { signUpEmailPassword } = useSignUpEmailPassword();
 
-const dontMatch = () => {
+const match = () => {
   if (password.value !== confirmPassword.value) {
-    passwordsDontMatch.value = true;
+    doMatch.value = false;
+    return false;
+  } else {
+    doMatch.value = true;
     return true;
-  } else return false;
+  }
 };
 
 const registerOrLogin = async () => {
@@ -26,8 +29,7 @@ const registerOrLogin = async () => {
     s;
     return alert("Please fill in all fields");
   }
-  const dntMatch = dontMatch();
-  if (dntMatch != true && isRegister.value == true) {
+  if (match() && isRegister.value == true) {
     var res = await signUpEmailPassword(email.value, password.value);
     const { sendEmail, isLoading, isSent, isError, error } =
       useSendVerificationEmail();
@@ -37,7 +39,6 @@ const registerOrLogin = async () => {
   } else if (isRegister.value == false) {
     var res = await signInEmailPassword(email.value, password.value);
   }
-  console.log(res);
   if (res.isSuccess) router.push("/");
 };
 </script>
@@ -86,7 +87,7 @@ const registerOrLogin = async () => {
           placeholder="Enter your password"
           class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
         />
-        <label class="block mb-4 mt-4" v-if="passwordsDontMatch"
+        <label class="block mb-4 mt-4" v-if="doMatch === false"
           ><span class="block text-sm uppercase mb-2 text-red-500 font-bold">
             passwords don't match!!</span
           ></label
