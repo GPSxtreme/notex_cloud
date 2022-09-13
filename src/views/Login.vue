@@ -6,11 +6,11 @@ import { useSignInEmailPassword, useSignUpEmailPassword } from "@nhost/vue";
 const router = useRouter();
 const isRegister = ref(false);
 
-const email = ref("");
-const password = ref("");
-const confirmPassword = ref("");
-const doMatch = ref();
-const emailSent = ref();
+let email = ref("");
+let password = ref("");
+let confirmPassword = ref("");
+let doMatch = ref();
+let emailSent = ref();
 
 const { signInEmailPassword } = useSignInEmailPassword();
 const { signUpEmailPassword } = useSignUpEmailPassword();
@@ -92,7 +92,7 @@ const registerOrLogin = async () => {
           placeholder="Enter your password"
           class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
         />
-        <label class="block mb-4 mt-4" v-if="doMatch === false"
+        <label class="block mb-4 mt-4" v-if="doMatch === false && isRegister"
           ><span class="block text-sm uppercase mb-2 text-red-500 font-bold">
             passwords don't match!!</span
           ></label
