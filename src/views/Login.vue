@@ -10,8 +10,10 @@ const isRegister = ref(false);
 let email = ref("");
 let password = ref("");
 let confirmPassword = ref("");
-let doMatch = ref(false);
+let doMatch = ref(true);
 let emailSent = ref(false);
+let emailErr = ref(false);
+let emailExists = ref(false);
 
 const { signInEmailPassword } = useSignInEmailPassword();
 const { signUpEmailPassword } = useSignUpEmailPassword();
@@ -25,28 +27,40 @@ const match = () => {
     return true;
   }
 };
-
 const emailSend = () => {
-  emailSent.value = true;
+  if (doMatch.value && isRegister && !emailErr && !emailExists)
+    emailSent.value = true;
 };
-
 const registerOrLogin = async () => {
   if (!email.value || !password.value) {
-    s;
     return alert("Please fill in all fields");
+  } else if (email.value && password.value) {
+    if (isRegister.value) {
+      match();
+    }
+    if (doMatch.value && isRegister.value) {
+      if (!emailExists) emailSent.value = true;
+      var res = await signUpEmailPassword(email.value, password.value);
+      if (res.isError) {
+        emailExists.value = true;
+      }
+      if (res.isSuccess) {
+        const { sendEmail, isLoading, isSent, isError, error } =
+          useSendVerificationEmail();
+        await sendEmail({
+          email: email.value,
+        });
+      }
+    } else if (isRegister.value == false) {
+      var res = await signInEmailPassword(email.value, password.value);
+      if (res.isError) {
+        emailErr.value = true;
+      }
+    }
+    if (res.isSuccess) {
+      router.push("/");
+    }
   }
-  if (match() && isRegister.value == true) {
-    emailSent.value = false;
-    var res = await signUpEmailPassword(email.value, password.value);
-    const { sendEmail, isLoading, isSent, isError, error } =
-      useSendVerificationEmail();
-    await sendEmail({
-      email: email.value,
-    });
-  } else if (isRegister.value == false) {
-    var res = await signInEmailPassword(email.value, password.value);
-  }
-  if (res.isSuccess) router.push("/");
 };
 </script>
 
@@ -94,9 +108,19 @@ const registerOrLogin = async () => {
           placeholder="Enter your password"
           class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
         />
-        <label class="block mb-4 mt-4" v-if="doMatch === false && isRegister"
+        <label class="block mb-4 mt-4" v-if="!doMatch && isRegister"
           ><span class="block text-sm uppercase mb-2 text-red-500 font-bold">
             passwords don't match!!</span
+          ></label
+        >
+        <label class="block mb-4 mt-4" v-if="emailErr && !emailExists"
+          ><span class="block text-sm uppercase mb-2 text-red-500 font-bold">
+            Incorrect email or password!!</span
+          ></label
+        >
+        <label class="block mb-4 mt-4" v-if="emailExists"
+          ><span class="block text-sm uppercase mb-2 text-red-500 font-bold">
+            Email is already registered!</span
           ></label
         >
         <input
@@ -107,8 +131,7 @@ const registerOrLogin = async () => {
         />
         <label class="block mb-4 mt-4" v-if="emailSent && isRegister"
           ><span class="block text-sm uppercase mb-2 text-indigo-500"
-            >Please confirm your email by clicking the link sent to your
-            inbox!🫡</span
+            >Email verification sent to your inbox!📧</span
           ></label
         >
       </div>
