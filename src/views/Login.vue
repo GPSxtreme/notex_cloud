@@ -1,4 +1,5 @@
 <script setup>
+//notex cloud☁☁
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useSignInEmailPassword, useSignUpEmailPassword } from "@nhost/vue";
@@ -9,8 +10,8 @@ const isRegister = ref(false);
 let email = ref("");
 let password = ref("");
 let confirmPassword = ref("");
-let doMatch = ref();
-let emailSent = ref();
+let doMatch = ref(false);
+let emailSent = ref(false);
 
 const { signInEmailPassword } = useSignInEmailPassword();
 const { signUpEmailPassword } = useSignUpEmailPassword();
@@ -35,6 +36,7 @@ const registerOrLogin = async () => {
     return alert("Please fill in all fields");
   }
   if (match() && isRegister.value == true) {
+    emailSent.value = false;
     var res = await signUpEmailPassword(email.value, password.value);
     const { sendEmail, isLoading, isSent, isError, error } =
       useSendVerificationEmail();
