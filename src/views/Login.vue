@@ -39,10 +39,12 @@ const registerOrLogin = async () => {
       match();
     }
     if (doMatch.value && isRegister.value) {
-      if (!emailExists) emailSent.value = true;
       var res = await signUpEmailPassword(email.value, password.value);
       if (res.isError) {
         emailExists.value = true;
+      }
+      if (!emailExists.value) {
+        emailSent.value = true;
       }
       if (res.isSuccess) {
         const { sendEmail, isLoading, isSent, isError, error } =
