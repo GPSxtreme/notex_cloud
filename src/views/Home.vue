@@ -264,4 +264,14 @@ main {
     41.8px 41.8px 33.4px rgba(0, 0, 0, 0.128),
     100px 100px 80px rgba(0, 0, 0, 0.2);
 }
+@media only screen and (max-width: 430px) {
+  .logo {
+    font-size: 120%;
+  }
+  .logout-btn,
+  .create-note-btn,
+  .delete-btn {
+    font-size: 80%;
+  }
+}
 </style>

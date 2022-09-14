@@ -137,6 +137,18 @@ const registerOrLogin = async () => {
         >
       </div>
     </form>
+    <div class="footer">
+      <h1 class="footer-txt">
+        ✏️ Designed and 🛠️Built by
+        <a
+          href="https://prudhvisuraaj.netlify.app/"
+          class="footer-redirect"
+          target="blank"
+        >
+          Prudhvi</a
+        >
+      </h1>
+    </div>
   </main>
 </template>
 <style>
@@ -202,9 +214,39 @@ main {
   color: black;
   font-size: 1.1rem;
 }
+.footer {
+  background-color: #fff1bd;
+  padding: 10px;
+  text-align: center;
+  line-height: 1.5;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top: 2px dashed rgb(35, 37, 85);
+}
+.footer-txt {
+  color: #146356;
+  font-size: 1.2rem;
+  padding: 10px;
+  font-family: "Pacifico", cursive;
+}
+.footer-redirect {
+  color: #2eb2ff;
+  text-decoration: underline;
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.5rem;
+}
+.footer-redirect:hover {
+  color: rgb(72, 0, 255);
+}
 @media only screen and (max-width: 470px) {
   .logo {
     font-size: 150%;
+  }
+  .footer-txt,
+  .footer-redirect {
+    font-size: 100%;
   }
 }
 </style>
