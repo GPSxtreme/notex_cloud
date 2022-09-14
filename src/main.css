@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
   body {
-    font-family: "sugoii", sans-serif;
+    font-family: "Roboto", sans-serif;
     @apply bg-gradient-to-r from-indigo-700 to-indigo-900 text-white;
   }
   main {

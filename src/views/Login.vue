@@ -1,5 +1,4 @@
 <script setup>
-//notex cloud☁☁
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useSignInEmailPassword, useSignUpEmailPassword } from "@nhost/vue";
@@ -68,7 +67,7 @@ const registerOrLogin = async () => {
 
 <template>
   <main>
-    <h1 class="logo"><span class="text-green-500">U-</span>Notes📃</h1>
+    <h1 class="logo"><span class="logo1">Notex </span>cloud☁</h1>
     <form @submit.prevent="registerOrLogin">
       <div class="login-box">
         <h3
@@ -87,7 +86,7 @@ const registerOrLogin = async () => {
           type="email"
           v-model="email"
           placeholder="Enter your email"
-          class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
+          class="inputText block w-full text-slate-800"
         />
         <label class="block mb-4 mt-4"
           ><span class="block text-sm uppercase mb-2">Password</span></label
@@ -96,7 +95,7 @@ const registerOrLogin = async () => {
           type="password"
           v-model="password"
           placeholder="Enter your password"
-          class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
+          class="inputText block w-full text-slate-800"
         />
         <label class="block mb-4 mt-4" v-if="isRegister"
           ><span class="block text-sm uppercase mb-2"
@@ -108,7 +107,7 @@ const registerOrLogin = async () => {
           v-model="confirmPassword"
           v-if="isRegister"
           placeholder="Enter your password"
-          class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
+          class="inputText block w-full text-slate-800"
         />
         <label class="block mb-4 mt-4" v-if="!doMatch && isRegister"
           ><span class="block text-sm uppercase mb-2 text-red-500 font-bold">
@@ -132,7 +131,7 @@ const registerOrLogin = async () => {
           class="text-green-800 hover:underline cursor-pointer mt-4"
         />
         <label class="block mb-4 mt-4" v-if="emailSent && isRegister"
-          ><span class="block text-sm uppercase mb-2 text-indigo-500"
+          ><span class="block text-xl uppercase mb-2 text-indigo-500"
             >Email verification sent to your inbox!📧</span
           ></label
         >
@@ -141,6 +140,15 @@ const registerOrLogin = async () => {
   </main>
 </template>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap");
+
+main {
+  background-color: #c8eed9;
+  min-height: 100vh;
+}
+
 .login-box {
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
@@ -150,21 +158,54 @@ const registerOrLogin = async () => {
     100px 100px 80px rgba(0, 0, 0, 0.07);
   width: 80%;
   margin: 0 auto;
-  background-color: rgb(66, 235, 74);
+  background-color: #fff1bd;
+  font-family: "Inconsolata", monospace;
+  font-size: 1.2rem;
+  color: #146356;
+
   padding: 20px;
 }
 .logo {
   margin: 10px auto;
   margin-bottom: 40px;
   text-align: center;
-  font-size: 2.5rem;
-  background-color: rgba(128, 128, 128, 0.558);
+  font-family: "Bebas Neue", cursive;
+  font-size: 3rem;
+  letter-spacing: 3px;
+  background-color: #fff1bd;
   padding: 10px 20px;
   width: 80%;
+  color: #2eb2ff;
   padding: 7px 10px;
   border: 2px dashed rgb(35, 37, 85);
   box-shadow: 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.041),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.059),
     100px 100px 80px rgba(0, 0, 0, 0.12);
+}
+.logo1 {
+  font-family: "Pacifico", cursive;
+  letter-spacing: none;
+  color: #146356;
+}
+.inputText {
+  font-family: inherit;
+  border: 0;
+  border-bottom: 2px solid black;
+  outline: 0;
+  color: #146356;
+  padding: 7px 7px;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+.inputText:focus {
+  background: #f3c79295;
+  transition: 0.2s;
+  color: black;
+  font-size: 1.1rem;
+}
+@media only screen and (max-width: 470px) {
+  .logo {
+    font-size: 150%;
+  }
 }
 </style>

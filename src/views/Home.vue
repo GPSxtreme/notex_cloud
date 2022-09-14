@@ -95,7 +95,7 @@ const convertToData = (date) => {
   <main>
     <div class="flex items-center justify-between mb-7">
       <h1 class="text-center text-3xl font-bold mb-4 logo">
-        <span class="text-green-500">U-</span>Notes📃
+        <span class="text-green-500">Notex </span>cloud☁
       </h1>
       <button
         @click="logout"
@@ -157,6 +157,9 @@ const convertToData = (date) => {
   </main>
 </template>
 <style>
+main {
+  background-color: blue;
+}
 .logo {
   margin: 0 auto;
   background: rgba(255, 255, 255, 0.193);
