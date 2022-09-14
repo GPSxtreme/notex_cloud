@@ -173,7 +173,6 @@ main {
   font-size: 3rem;
   letter-spacing: 3px;
   background-color: #fff1bd;
-  padding: 10px 20px;
   width: 80%;
   color: #2eb2ff;
   padding: 7px 10px;

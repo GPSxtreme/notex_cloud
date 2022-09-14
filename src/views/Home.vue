@@ -93,20 +93,13 @@ const convertToData = (date) => {
 
 <template>
   <main>
-    <div class="flex items-center justify-between mb-7">
-      <h1 class="text-center text-3xl font-bold mb-4 logo">
-        <span class="text-green-500">Notex </span>cloud☁
-      </h1>
-      <button
-        @click="logout"
-        class="bg-white/20 rounded-lg p-2 text-red-500 text-xl font-bold logout-btn"
-      >
-        Logout
-      </button>
+    <div class="flex items-center justify-between">
+      <h1 class="logo"><span class="logo1">Notex </span>cloud☁</h1>
+      <button @click="logout" class="logout-btn">Logout</button>
     </div>
-
+    <hr class="top-line-divider" />
     <form @submit.prevent="handleCreateNote" class="mb-8">
-      <div class="shadow-xl p-6 bg-gray-500/40 rounded-lg">
+      <div class="noteInputBox">
         <label class="block mb-4">
           <label class="block mb-4 mt-4"
             ><span class="block text-base uppercase mb-2">Title</span></label
@@ -127,21 +120,18 @@ const convertToData = (date) => {
             class="block w-full p-2 border border-gray-300 rounded-md text-slate-800"
           ></textarea>
         </label>
-        <input
-          type="submit"
-          value="create note"
-          class="text-green-500 hover:underline cursor-pointer mt-4 bg-white/20 rounded-lg p-2 create-note-btn"
-        />
+        <input type="submit" value="create note" class="create-note-btn" />
       </div>
+      <hr class="top-line-divider" />
     </form>
     <div v-if="!loadingNotes">
       <div
         v-for="note in noteResults.notes"
         :key="note.id"
-        class="relative shadow-xl bg-gray-500/40 text-white rounded-lg p-6 mb-6"
+        class="relative shadow-xl bg-gray-500/40 text-white rounded-lg p-6 mb-6 noteBox"
       >
         <button
-          class="absolute right-6 top-6 bg-white/20 rounded-lg p-2 text-red-500 text-base font-bold delete-btn"
+          class="absolute right-6 top-6 delete-btn"
           @click="() => deleteNote({ id: note.id })"
         >
           Delete
@@ -157,20 +147,59 @@ const convertToData = (date) => {
   </main>
 </template>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@500&display=swap");
 main {
   background-color: blue;
+  min-height: 100vh;
+  color: white;
+  background-color: #c8eed9;
+  font-family: "Inconsolata", monospace;
 }
+
 .logo {
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.193);
+  margin: 10px auto;
+  text-align: center;
+  font-family: "Bebas Neue", cursive;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  background-color: #fff1bd;
+  width: 50%;
+  color: #2eb2ff;
   padding: 7px 10px;
   border: 2px dashed rgb(35, 37, 85);
+  border-radius: 8px;
   box-shadow: 6.7px 6.7px 5.3px rgba(0, 0, 0, 0.041),
     22.3px 22.3px 17.9px rgba(0, 0, 0, 0.059),
     100px 100px 80px rgba(0, 0, 0, 0.12);
 }
+.logo1 {
+  font-family: "Pacifico", cursive;
+  letter-spacing: none;
+  color: #146356;
+}
+.logout-btn {
+  background-color: white;
+  color: red;
+  font-family: "Bebas Neue", cursive;
+  padding: 7px 10px;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  border: 2px dashed red;
+}
+.create-note-btn {
+  background-color: white;
+  color: green;
+  font-family: "Bebas Neue", cursive;
+  padding: 7px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px dashed green;
+}
 .logout-btn:hover {
-  background: rgba(255, 255, 255, 0.33);
+  color: white;
+  background: rgba(233, 9, 9, 0.489);
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.052),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.068),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.081),
@@ -178,8 +207,46 @@ main {
     41.8px 41.8px 33.4px rgba(0, 0, 0, 0.128),
     100px 100px 80px rgba(0, 0, 0, 0.2);
 }
+.top-line-divider {
+  height: 1px;
+  margin: 0 auto;
+  margin-top: 36px;
+  margin-bottom: 36px;
+  width: 90%;
+  border: 0;
+  background-color: #91886a;
+  filter: blur(0.8px);
+}
+.noteInputBox,
+.noteBox {
+  box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.02),
+    6.7px 6.7px 5.3px rgba(0, 0, 0, 0.028),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    22.3px 22.3px 17.9px rgba(0, 0, 0, 0.042),
+    41.8px 41.8px 33.4px rgba(0, 0, 0, 0.05),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+  width: 90%;
+  margin: 0 auto;
+  background-color: #fff1bd;
+  font-size: 1.2rem;
+  color: #146356;
+  padding: 20px;
+}
+.noteBox {
+  margin-top: 20px;
+}
+.delete-btn {
+  background-color: white;
+  color: red;
+  font-family: "Bebas Neue", cursive;
+  padding: 7px 10px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px dashed red;
+}
 .delete-btn:hover {
-  background: rgba(255, 255, 255, 0.33);
+  color: white;
+  background: rgba(233, 9, 9, 0.489);
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.052),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.068),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.081),
@@ -188,7 +255,8 @@ main {
     100px 100px 80px rgba(0, 0, 0, 0.2);
 }
 .create-note-btn:hover {
-  background: rgba(255, 255, 255, 0.33);
+  color: white;
+  background: rgba(46, 233, 9, 0.489);
   box-shadow: 2.8px 2.8px 2.2px rgba(0, 0, 0, 0.052),
     6.7px 6.7px 5.3px rgba(0, 0, 0, 0.068),
     12.5px 12.5px 10px rgba(0, 0, 0, 0.081),
