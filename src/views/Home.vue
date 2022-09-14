@@ -230,7 +230,7 @@ main {
   font-size: 1.2rem;
   color: #146356;
   padding: 20px;
-  overflow: scroll;
+  overflow: hidden;
 }
 .noteBox {
   margin-top: 20px;
@@ -272,6 +272,9 @@ main {
   .create-note-btn,
   .delete-btn {
     font-size: 80%;
+  }
+  .noteBox {
+    overflow: scroll;
   }
 }
 </style>
