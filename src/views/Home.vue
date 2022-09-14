@@ -130,14 +130,13 @@ const convertToData = (date) => {
         :key="note.id"
         class="relative shadow-xl bg-gray-500/40 text-white rounded-lg p-6 mb-6 noteBox"
       >
+        <h3 class="font-bold text-2xl mb-3 noteTitle">{{ note.title }}</h3>
         <button
-          class="absolute right-6 top-6 delete-btn"
+          class="absolute right-4 top-20 delete-btn"
           @click="() => deleteNote({ id: note.id })"
         >
           Delete
         </button>
-
-        <h3 class="font-bold text-2xl mb-3">{{ note.title }}</h3>
         <p class="text-lg mb-3" v-html="convertToHTML(note.content)"></p>
         <div class="text-sm text-green-500 italic">
           {{ convertToData(note.created) }}
@@ -231,6 +230,7 @@ main {
   font-size: 1.2rem;
   color: #146356;
   padding: 20px;
+  overflow: scroll;
 }
 .noteBox {
   margin-top: 20px;
